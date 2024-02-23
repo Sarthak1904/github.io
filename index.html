@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .column {
+           float: left;
+           width: 50%;
+           padding: 10px;
+           box-sizing: border-box;
+          
+        }
+        .row::after {
+           content: "";
+           clear: both;
+           display: table;
+        }
+     </style>
+</head>
+<script>
+    
+    async function add(){
+    const x = parseInt(document.getElementById("quantity1").value)
+    const y = parseInt(document.getElementById("quantity2").value)
+    const response = await fetch("https://arithmetic-service-sarthak1904.onrender.com/add/"+x+"/"+y)
+    const sum = await response.json()
+    // console.log(response)
+    document.getElementById("ans").innerHTML = sum}
+
+    async function sub(){
+    const x = parseInt(document.getElementById("quantity1").value)
+    const y = parseInt(document.getElementById("quantity2").value)
+    const response = await fetch("https://arithmetic-service-sarthak1904.onrender.com/sub/"+x+"/"+y)
+    const sub = await response.json()
+    // console.log(response)
+    document.getElementById("ans").innerHTML = sub}
+
+    async function mul(){
+    const x = parseInt(document.getElementById("quantity1").value)
+    const y = parseInt(document.getElementById("quantity2").value)
+    const response = await fetch("https://arithmetic-service-sarthak1904.onrender.com/mul/"+x+"/"+y)
+    const multiply = await response.json()
+    // console.log(response)
+    document.getElementById("ans").innerHTML = multiply}
+
+    async function div(){
+    const x = parseInt(document.getElementById("quantity1").value)
+    const y = parseInt(document.getElementById("quantity2").value)
+    const response = await fetch("https://arithmetic-service-sarthak1904.onrender.com/div/"+x+"/"+y)
+    const divide = await response.json()
+    // console.log(response)
+    document.getElementById("ans").innerHTML = divide}
+
+    async function isPrime() {
+            const numberToTest = document.getElementById("numberToTest");            
+            let n = numberToTest.value;            
+            const response = await fetch("https://primes-service-latest-xlqj.onrender.com/primes/" + n);
+            const result = await response.json();
+            document.getElementById("primeCheckResult").innerText = result;
+        }
+</script>
+
+<body>
+    <div class="column">
+        <h2> Calculator </h2> 
+        <label for="quantity"> Arithimetic </label> <br> <br>
+        <input type="number" id="quantity1" name="quantity" >
+        <!-- <label for="quantity"> + </label> -->
+        <input type="number" id="quantity2" name="quantity" >
+        <button type="button" onclick="add()"> + </button>
+        <button type="button" onclick="sub()"> - </button>
+        <button type="button" onclick="mul()"> * </button>
+        <button type="button" onclick="div()"> / </button>
+        <p id="ans"></p>
+    </div>
+    <div class="column">
+            <section>
+                <h2>Prime check</h2>                
+                <label>Number to test:</label>
+                <input id="numberToTest"/>
+                <button onclick="isPrime()">Check</button>
+                <label id="primeCheckResult"></label>  
+            </section>           
+    </div> 
+</body>
+</html>
